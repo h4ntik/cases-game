@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Кейсы Побед</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ========================================= -->
+    <!-- Фоновое оформление -->
+    <!-- ========================================= -->
+
+    <div class="background">
+        <div class="background-blur bg-1"></div>
+        <div class="background-blur bg-2"></div>
+        <div class="background-grid"></div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Основное приложение -->
+    <!-- ========================================= -->
+
+    <main class="app">
+
+        <!-- =============================== -->
+        <!-- Верхняя панель -->
+        <!-- =============================== -->
+
+        <header class="top-panel glass">
+
+            <div class="title-wrapper">
+
+                <h1 class="title">
+                    Кейсы Побед
+                </h1>
+
+                <p class="subtitle">
+                    🎁 Открой свой кейс и узнай награду
+                </p>
+
+            </div>
+
+            <section class="bank-panel">
+
+                <article class="bank-card">
+            
+                    <span class="bank-label">
+                        💰 Баланс
+                    </span>
+            
+                    <span
+                        id="receivedBank"
+                        class="bank-value">
+            
+                        0 ₽
+            
+                    </span>
+            
+                </article>
+            
+            </section>
+
+        </header>
+
+        <!-- =============================== -->
+        <!-- Кейсы -->
+        <!-- =============================== -->
+
+        <section
+            id="casesGrid"
+            class="cases-grid">
+
+        </section>
+
+        <!-- =============================== -->
+        <!-- Нижняя панель -->
+        <!-- =============================== -->
+
+        <footer class="bottom-panel">
+
+            <button
+                id="resetButton"
+                class="new-stream-button">
+
+                Новый стрим
+
+            </button>
+
+        </footer>
+
+    </main>
+
+    <!-- ========================================= -->
+    <!-- Затемнение -->
+    <!-- ========================================= -->
+
+    <div
+        id="overlay"
+        class="overlay hidden">
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Экран открытия -->
+    <!-- ========================================= -->
+
+    <div
+        id="openingScene"
+        class="opening-scene hidden">
+
+        <div class="opening-case">
+
+            <div class="opening-glow"></div>
+
+            <div class="opening-box">
+
+                <div class="opening-front">
+
+                    🎁
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Карточка награды -->
+    <!-- ========================================= -->
+
+    <div
+        id="rewardModal"
+        class="reward-modal hidden">
+
+        <div
+            id="rewardCard"
+            class="reward-card">
+
+            <div
+                id="rewardIcon"
+                class="reward-icon">
+
+                💰
+
+            </div>
+
+            <div
+                id="rewardTitle"
+                class="reward-title">
+
+                Поздравляем
+
+            </div>
+
+            <div
+                id="rewardAmount"
+                class="reward-amount">
+
+                1000 ₽
+
+            </div>
+
+            <button
+                id="closeReward"
+                class="reward-button">
+
+                Продолжить
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Контейнер конфетти -->
+    <!-- ========================================= -->
+
+    <div
+        id="confettiContainer"
+        class="confetti-container">
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Шаблон кейса -->
+    <!-- ========================================= -->
+
+    <template id="caseTemplate">
+
+        <div
+            class="case-card"
+            data-index="0">
+
+            <div class="case-inner">
+
+                <div class="case-front">
+
+                    <div class="case-shine"></div>
+
+                    <div class="case-icon">
+
+                        🎁
+
+                    </div>
+
+                    <div class="case-name">
+
+                        Кейс
+
+                    </div>
+
+                </div>
+
+                <div class="case-back">
+
+                    <div class="opened-icon">
+                
+                        ✓
+                
+                    </div>
+                
+                
+                    <div class="opened-text">
+                
+                        ОТКРЫТО
+                
+                    </div>
+                
+                
+                </div>
+
+            </div>
+
+        </div>
+
+    </template>
+
+    <!-- ========================================= -->
+    <!-- Звуки -->
+    <!-- ========================================= -->
+
+    <audio
+        id="clickSound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/click.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="openSound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/open.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="legendarySound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/legendary.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <!-- ========================================= -->
+    <!-- Скрипт -->
+    <!-- ========================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

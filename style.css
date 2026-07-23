@@ -1,0 +1,1524 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#07090f;
+    --bg2:#0d1320;
+    --card:#131c2d;
+    --glass:rgba(255,255,255,.06);
+    --glassBorder:rgba(255,255,255,.12);
+
+    --text:#ffffff;
+    --textSoft:#9da7bb;
+
+    --accent:#5f7cff;
+    --accent2:#2fe7ff;
+
+    --gold:#ffd24d;
+    --gold2:#ffb300;
+
+    --danger:#ff6666;
+
+    --radius:22px;
+
+    --shadow:
+        0 15px 40px rgba(0,0,0,.45);
+
+    --transition:.35s cubic-bezier(.2,.8,.2,1);
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at top,#1b2340 0%,transparent 45%),
+        radial-gradient(circle at bottom right,#11294a 0%,transparent 45%),
+        var(--bg);
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+}
+
+/* ==========================================================
+   BACKGROUND
+========================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-5;
+
+}
+
+.background-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+    background-size:50px 50px;
+
+    opacity:.25;
+
+}
+
+.background-blur{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+}
+
+.bg-1{
+
+    width:550px;
+    height:550px;
+
+    left:-150px;
+    top:-120px;
+
+    background:#3b5cff;
+
+    opacity:.35;
+
+}
+
+.bg-2{
+
+    width:450px;
+    height:450px;
+
+    right:-100px;
+    bottom:-120px;
+
+    background:#14b8ff;
+
+    opacity:.25;
+
+}
+
+/* ==========================================================
+   APP
+========================================================== */
+
+.app{
+
+    width:min(1450px,95%);
+
+    margin:auto;
+
+    padding:45px 0 60px;
+
+}
+
+.glass{
+
+    backdrop-filter:blur(20px);
+
+    background:var(--glass);
+
+    border:1px solid var(--glassBorder);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.top-panel{
+
+    padding:28px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:40px;
+
+    margin-bottom:50px;
+
+}
+
+.title{
+
+    font-size:48px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+}
+
+.subtitle{
+
+    margin-top:10px;
+
+    color:var(--textSoft);
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   BANK
+========================================================== */
+
+.bank-panel{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.bank-card{
+
+    min-width:260px;
+
+    padding:24px 35px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(95,124,255,.18),
+            rgba(47,231,255,.08)
+        );
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.12);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.bank-label{
+
+    color:var(--textSoft);
+
+    font-size:14px;
+
+}
+
+.bank-value{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.spent{
+
+    color:#ff9c9c;
+
+}
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.cases-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:28px;
+
+    margin-bottom:50px;
+
+}
+
+/* ==========================================================
+   CASE
+========================================================== */
+
+.case-card{
+
+    perspective:1400px;
+
+    cursor:pointer;
+
+    height:235px;
+
+    transition:var(--transition);
+
+}
+
+.case-card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.03);
+
+}
+
+.case-inner{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .8s;
+
+}
+
+.case-card.opened .case-inner{
+
+    transform:rotateY(180deg);
+
+}
+
+.case-front,
+.case-back{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:26px;
+
+    overflow:hidden;
+
+    backface-visibility:hidden;
+
+}
+
+.case-front{
+
+    background:
+        linear-gradient(160deg,#18233b,#11192d);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+        0 15px 40px rgba(0,0,0,.4),
+
+        inset 0 1px rgba(255,255,255,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    position:relative;
+
+}
+
+.case-front::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at top,
+        rgba(255,255,255,.16),
+        transparent 45%);
+
+}
+
+.case-front::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    border-radius:24px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.case-card:hover .case-front{
+
+    box-shadow:
+
+        0 0 35px rgba(90,140,255,.45),
+
+        0 20px 45px rgba(0,0,0,.45);
+
+}
+
+.case-shine{
+
+    position:absolute;
+
+    top:-120%;
+
+    left:-80%;
+
+    width:70%;
+
+    height:300%;
+
+    transform:rotate(25deg);
+
+    background:
+
+        linear-gradient(
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transition:1s;
+
+}
+
+.case-card:hover .case-shine{
+
+    left:160%;
+
+}
+
+.case-icon{
+
+    font-size:72px;
+
+    filter:drop-shadow(0 0 20px rgba(255,255,255,.2));
+
+}
+
+.case-name{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+/* ==========================================================
+   CASE BACK
+========================================================== */
+
+.case-back{
+
+    transform:rotateY(180deg);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #1d7b48,
+            #155a37
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.case-back::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,.15),
+            transparent 45%
+        );
+
+}
+
+.opened-icon{
+
+    font-size:64px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.4);
+
+}
+
+.opened-text{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:#ffffff;
+
+}
+
+.case-card.disabled{
+
+    cursor:default;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.bottom-panel{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.new-stream-button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    padding:
+
+        18px
+        46px;
+
+    border-radius:18px;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    transition:var(--transition);
+
+    box-shadow:
+
+        0 12px 30px rgba(80,120,255,.35);
+
+}
+
+.new-stream-button:hover{
+
+    transform:
+
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+
+        0 18px 45px rgba(90,150,255,.5);
+
+}
+
+.new-stream-button:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(8px);
+
+    opacity:1;
+
+    transition:.35s;
+
+    z-index:80;
+
+}
+
+.hidden{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   OPENING SCENE
+========================================================== */
+
+.opening-scene{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:90;
+
+}
+
+.opening-case{
+
+    position:relative;
+
+    width:250px;
+
+    height:250px;
+
+    animation:
+
+        floatCase
+        2.5s
+        ease-in-out
+        infinite;
+
+}
+
+.opening-glow{
+
+    position:absolute;
+
+    inset:-40px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            rgba(90,140,255,.9),
+
+            transparent 70%
+
+        );
+
+    filter:blur(30px);
+
+    animation:
+
+        glowPulse
+        1.6s
+        infinite;
+
+}
+
+.opening-box{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:28px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #22385d,
+            #16233a
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.5);
+
+}
+
+.opening-front{
+
+    font-size:100px;
+
+    filter:
+
+        drop-shadow(
+            0 0 30px rgba(255,255,255,.25)
+        );
+
+}
+
+/* ==========================================================
+   REWARD MODAL
+========================================================== */
+
+.reward-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:100;
+
+}
+
+.reward-card{
+
+    width:min(460px,92vw);
+
+    padding:40px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            160deg,
+            rgba(28,37,59,.98),
+            rgba(16,22,36,.98)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 30px 80px rgba(0,0,0,.55);
+
+    transform:scale(.8);
+
+    opacity:0;
+
+    transition:
+
+        transform .4s,
+        opacity .4s;
+
+}
+
+.reward-modal:not(.hidden) .reward-card{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+.reward-icon{
+
+    font-size:80px;
+
+    margin-bottom:20px;
+
+}
+
+.reward-title{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    margin-bottom:14px;
+
+}
+
+.reward-amount{
+
+    font-size:48px;
+
+    font-weight:900;
+
+    color:#ffffff;
+
+    margin-bottom:30px;
+
+}
+
+.reward-button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:
+
+        15px
+        36px;
+
+    border-radius:16px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    transition:var(--transition);
+
+}
+
+.reward-button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================================
+   LEGENDARY
+========================================================== */
+
+.reward-card.legendary{
+
+    background:
+
+        linear-gradient(
+            160deg,
+            #4b3200,
+            #241500
+        );
+
+    border:
+
+        2px solid
+        rgba(255,220,120,.6);
+
+    box-shadow:
+
+        0 0 70px rgba(255,200,60,.45),
+
+        0 30px 90px rgba(0,0,0,.65);
+
+}
+
+.reward-card.legendary .reward-title{
+
+    color:var(--gold);
+
+    font-size:38px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    text-shadow:
+
+        0 0 18px rgba(255,210,70,.8);
+
+}
+
+.reward-card.legendary .reward-amount{
+
+    color:#ffe27b;
+
+    text-shadow:
+
+        0 0 24px rgba(255,210,70,.8);
+
+    animation:
+
+        legendaryPulse
+        1.5s
+        infinite;
+
+}
+
+.reward-card.legendary .reward-icon{
+
+    font-size:96px;
+
+    animation:
+
+        legendaryPulse
+        1.5s
+        infinite;
+
+}
+
+ /* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes floatCase{
+
+    0%{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-18px)
+            scale(1.04);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes glowPulse{
+
+    0%{
+
+        opacity:.5;
+
+        transform:scale(.9);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1.15);
+
+    }
+
+    100%{
+
+        opacity:.5;
+
+        transform:scale(.9);
+
+    }
+
+}
+
+
+@keyframes legendaryPulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+@keyframes flashOpen{
+
+    0%{
+
+        opacity:0;
+
+        transform:scale(.5);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:scale(1.2);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+@keyframes rotateGlow{
+
+    from{
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to{
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================================
+   OPENING EFFECTS
+========================================================== */
+
+.opening-scene.active
+.opening-box{
+
+    animation:
+
+        flashOpen
+        .7s
+        ease;
+
+}
+
+
+.opening-case.legendary
+.opening-glow{
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,220,80,1),
+
+            transparent 70%
+
+        );
+
+}
+
+
+.opening-case.legendary
+.opening-front{
+
+    animation:
+
+        legendaryPulse
+        .8s
+        infinite;
+
+}
+
+
+/* ==========================================================
+   CONFETTI
+========================================================== */
+
+.confetti-container{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:150;
+
+}
+
+
+.confetti{
+
+    position:absolute;
+
+    width:10px;
+
+    height:18px;
+
+    top:-30px;
+
+    animation:
+
+        confettiFall
+        3s
+        linear
+        forwards;
+
+}
+
+
+@keyframes confettiFall{
+
+    0%{
+
+        transform:
+
+            translateY(0)
+            rotate(0deg);
+
+        opacity:1;
+
+    }
+
+
+    100%{
+
+        transform:
+
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+
+    .cases-grid{
+
+        grid-template-columns:
+
+            repeat(4,1fr);
+
+    }
+
+
+    .top-panel{
+
+        flex-direction:
+
+            column;
+
+        align-items:
+
+            stretch;
+
+    }
+
+
+    .bank-panel{
+
+        justify-content:center;
+
+    }
+
+
+}
+
+
+
+@media(max-width:900px){
+
+
+    .cases-grid{
+
+        grid-template-columns:
+
+            repeat(3,1fr);
+
+        gap:20px;
+
+    }
+
+
+    .title{
+
+        font-size:38px;
+
+    }
+
+
+    .bank-panel{
+
+        flex-direction:
+
+            column;
+
+    }
+
+
+    .bank-card{
+
+        width:100%;
+
+    }
+
+
+}
+
+
+
+@media(max-width:650px){
+
+
+    .app{
+
+        width:92%;
+
+        padding-top:25px;
+
+    }
+
+
+    .cases-grid{
+
+        grid-template-columns:
+
+            repeat(2,1fr);
+
+        gap:15px;
+
+    }
+
+
+    .case-card{
+
+        height:180px;
+
+    }
+
+
+    .case-icon{
+
+        font-size:55px;
+
+    }
+
+
+    .case-name{
+
+        font-size:16px;
+
+    }
+
+
+    .title{
+
+        font-size:32px;
+
+    }
+
+
+    .reward-card{
+
+        padding:28px;
+
+    }
+
+
+    .reward-amount{
+
+        font-size:38px;
+
+    }
+
+
+}
+
+
+
+@media(max-width:400px){
+
+
+    .cases-grid{
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+    .case-card{
+
+        height:220px;
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+button:focus-visible{
+
+    outline:
+
+        3px solid
+        rgba(80,150,255,.7);
+
+    outline-offset:4px;
+
+}
+
+
+/* ==========================================================
+   UTILITY STATES
+========================================================== */
+
+
+.blur{
+
+    filter:blur(8px);
+
+}
+
+
+.no-animation{
+
+    animation:none!important;
+
+    transition:none!important;
+
+}
+
+.received-card{
+
+    animation:
+
+        cardFloat
+        5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes cardFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.opened-reward{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+    text-shadow:
+
+        0 0 15px rgba(255,255,255,.5);
+
+}
+
+
+.case-card.opened .case-back{
+
+    animation:
+
+        openedGlow
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+
+@keyframes openedGlow{
+
+
+    0%{
+
+        box-shadow:
+
+        0 0 20px rgba(80,255,150,.3);
+
+    }
+
+
+    50%{
+
+        box-shadow:
+
+        0 0 45px rgba(80,255,150,.7);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+
+        0 0 20px rgba(80,255,150,.3);
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   END STYLE
+========================================================== */
