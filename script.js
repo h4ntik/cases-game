@@ -612,7 +612,7 @@ async function openCase(index){
 
 
 
-    await wait(500);
+    await wait(1000);
 
 
 
