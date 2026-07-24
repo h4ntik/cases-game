@@ -34,20 +34,20 @@ const GAME_CONFIG = {
 
         1000,
         1500,
-        2000,
+        1500,
 
         2000,
+        2000,
+
         2500,
 
-        3000,
+        2500,
 
-        3000,
-
-        8000
+        10000
 
     ],
 
-    legendaryPrize:8000,
+    legendaryPrize:10000,
 
     casesCount:10
 
