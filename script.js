@@ -43,11 +43,11 @@ const GAME_CONFIG = {
 
         2500,
 
-        15000
+        10000
 
     ],
 
-    legendaryPrize:15000,
+    legendaryPrize:10000,
 
     casesCount:10
 
